@@ -1,4 +1,5 @@
 # To change this license header, choose License Headers in Project Properties.
+# This middleware formats web-server console output
 
 class Formatter
   def initialize(app)
@@ -6,7 +7,6 @@ class Formatter
   end
 
   def call(env)
-    ## p self.class
     puts format_env(env)
     @app.call(env)
   end
@@ -24,10 +24,8 @@ class Formatter
   end
 
   def web_server_info(env)
-    env.reject { |key, val| key.include?('HTTP_') or key.include?('rack.') }
+    env.reject { |key, _val| key.include?('HTTP_') || key.include?('rack.') }
   end
-
-
 
   def format_env(env)
     puts format('Request HTTP headers', req_http_headers(env))

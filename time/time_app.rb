@@ -2,7 +2,6 @@
 
 class TimeApp
   def call(env)
-    ## p self.class
     [status, headers, body]
   end
 
@@ -13,10 +12,11 @@ class TimeApp
   end
 
   def headers
-    { 'content-Type' => 'text/plain'}
+    { 'Content-Type' => 'text/plain' }
   end
 
   def body
-    ["\tRack is alive: from App...\n"]
+    timestamp = Time.now
+    timestamp.strftime('%Y,%m,%d,%H,%M,%S').split(',')
   end
 end
