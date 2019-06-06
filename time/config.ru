@@ -1,4 +1,4 @@
-# Rack Up file
+# Rack Up init file
 
 require_relative 'middleware/formatter'
 require_relative 'middleware/timeparams'

@@ -1,4 +1,3 @@
-# To change this license header, choose License Headers in Project Properties.
 # This middleware requests and forms data:time reply
 
 class Timeparams

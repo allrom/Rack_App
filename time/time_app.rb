@@ -1,5 +1,5 @@
 # To change this license header, choose License Headers in Project Properties.
-
+#
 class TimeApp
   def call(env)
     [status, headers, body]

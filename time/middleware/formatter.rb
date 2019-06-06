@@ -1,4 +1,3 @@
-# To change this license header, choose License Headers in Project Properties.
 # This middleware formats web-server console output
 
 class Formatter
@@ -28,7 +27,7 @@ class Formatter
   end
 
   def format_env(env)
-    puts format('Request HTTP headers', req_http_headers(env))
-    puts format('Web Server headers', web_server_info(env))
+    puts format('Request HTTP headers:', req_http_headers(env))
+    puts format('Web Server headers:', web_server_info(env))
   end
 end
