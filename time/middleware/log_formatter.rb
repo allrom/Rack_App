@@ -1,6 +1,6 @@
 # This middleware formats web-server console output
 
-class Formatter
+class LogFormatter
   def initialize(app)
     @app = app
   end
