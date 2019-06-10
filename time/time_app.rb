@@ -1,5 +1,7 @@
 # To change this license header, choose License Headers in Project Properties.
 #
+require_relative 'time_formatter'
+
 class TimeApp
   def call(env)
     request = Rack::Request.new(env)
@@ -15,28 +17,10 @@ class TimeApp
 
   def time_response(params)
     frmt = TimeFormatter.new(params)
-    @year, @month, @day, @hour, @minute, @second = [""] * 6
-    response_body = []
 
     if frmt.valid?
-      fyear, fmonth, fday, fhour, fminute, fsecond = frmt.formatted_time
-
-      frmt.work_formats.each do |format|
-        case format
-        when 'year' then @year = fyear
-        when 'month' then @month = fmonth
-        when 'day' then @day = fday
-
-        when 'hour' then @hour = fhour
-        when 'minute' then @minute = fminute
-        when 'second' then @second = fsecond
-        end
-      end
-
-      response_body << [@year, @month, @day].map(&:to_s).join('-') + ' '\
-                       + [@hour, @minute, @second].map(&:to_s).join(':') + "\n"
-
-      [200, { 'Content-Type' => 'text/plain' }, response_body]
+      body = frmt.formatted_response
+      [200, { 'Content-Type' => 'text/plain' }, body]
     else
       [400, { 'Content-Type' => 'text/plain' },
        ["\tUnknown Time format(s) \[#{frmt.unknown_formats.join(', ')}\]\n"]]
